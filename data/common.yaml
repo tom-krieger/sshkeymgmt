@@ -1,0 +1,50 @@
+---
+sshkeymgmt::groups:
+  test1:
+    gid: 5001
+    ensure: present
+  test2:
+    gid: 5002
+    ensure: present
+  test3:
+    gid: 5003
+    ensure: present
+
+sshkeymgmt::users:
+  test1:
+    ensure: present
+    gid: 5001
+    uid: 5001
+    homedir: '/home/test1'
+    sshkeys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCeXQRlEQJQbf7TXmyL1fgS2PnJJlJfAGJhOd2rk+J1ZaVqpjCc8/OWmgregg5r6qEoB4pUritwgrUtco3ZGBUedhyx8EfpYd3KWRfZFPgV4zn3RQUelJsKlR7mULbntW9JM/8d2m9XaK8+adDjP5ppRi2d1yA8UyJs2v38t5Vjj4PuBZXZzDanfzbmaiJCSCYMK1fjEx0UlRGD9tNBjFHbo4wWfalS3tPXIOOGeKjyicq6Vrwa0yrQsm+6jRV1TcImUkJqftBHwSyUKf9Zual9dR6zV3Qb9fibb8MpjudKm/TANgkonQW6k/2GsReOoMemGErBDyyrkPk4fP70BHot Test1
+  test2:
+    ensure: present
+    gid: 5002
+    uid: 5002
+    homedir: '/home/test2'
+    sshkeys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC5fV9gPAUYf5/LqUxjxfYHyYF90OuDNIyLgWIH0X1rQqjwCU5OXZiMU33f9Sol8CtwvutxBeROT0i5swjUeh2KlM7KU+pnGIurq9pG2SxFbBVP5AZjmkVUgVML9VDk+mgYc3MQlG3EoW0j8HVLNY3+ljLSVW9WDIunyWJel3paMKMdp5iIKK6QmvkEZxVTjaRZaZRdfTQ0ljpt6NZZKv01twLCzf8JlipC0c1e05RojFwGk31Z7FxuAqVKVv1ARdtuA036wZQPR3OjR/MFlM5ghDsNwnb6Klb115sr0ZfDydKJtwZYP9bKAghdzRNOz/whQL2IZ6Fr0fohFnBT1pnd Test2
+  test3:
+    ensure: present
+    gid: 5002
+    uid: 5003
+    homedir: '/home/test3'
+    sshkeys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCuZoMOITIBL3h+IOdhatHbliZhisoOoxjGhJ8N4u6dxnR4Z9WJ9itKs5mQ6JTvurC4/gy263n32RBQzMxafNMdKayLIG3lIpt5etwKT0rx4choR9+Hvy6mMuK7IHcJaeO07A5kW9dXQkXltTGqSpEG5OaoNTVjjAcE6+/9NoQSmDiMxzTT3xTZ5CHQuQf9+Ec264CTtrSH6kAYELtYWY8DzL5TRP1qHkwYIEufzxY1zPNnABltQSXsbRDNy3TYnSwGddpcIUbuAsB1WxKjCb1eVANCPkdwnDOeJM9TeXktdZRNr4/exeEadfd9clWhYMdaeo+mwdfoE2OHrYWUZlL9 Test3
+  test4:
+    ensure: present
+    gid: 5004
+    uid: 5004
+    homedir: '/home/test4'
+    sshkeys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDCxquHZcL4sLa86Gh6Rcd40R7sVmCjK5wq69rV/N+fTE3c1ebmhUOuWvC7uCMzQZ+o+g8wM2nMjLuUm9NMOp3Y6GfsDKjNUTMdEzD6gn0LVhLRIji8Q+ok1WhSiN9VMDjwOQCYsl1mGDB3nd1aG4eUecePleTbstKjm0WFbKpYP/NmHBYGcypGcfDyPTP9zYmoz4PTll6U/7/1bOAHVj5PNyOxWoML7lL9bbSDCnWBbay0jYv1I1zsgmIaxcjuI2K/dQiKeHItKsGNP5NjUqHZS7OQ51L9kuw0VYfBdYVArlBRTNpOZt7dY+qFwcNq75DbKQiDnl0nfGcutyIFAVLd Test4
+
+sshkeymgmt::ssh_key_groups:
+  ssh1:
+    ssh_users:
+      - test1
+      - test2
+  test3:
+    ssh_users:
+      - test3
