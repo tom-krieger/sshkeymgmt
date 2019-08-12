@@ -4,8 +4,8 @@
   "author": "Thomas Krieger",
   "summary": "Manage Unix users, groups and ssh keys",
   "license": "Apache-2.0",
-  "source": "https://git.home.tom-krieger.de/puppet-modules/sshkeymgmt.git",
-  "issues_url": "https://git.home.tom-krieger.de/puppet-modules/sshkeymgmt/issues",
+  "source": "https://github.com/tom-krieger/sshkeymgmt.git",
+  "issues_url": "https://github.com/tom-krieger/sshkeymgmt/issues",
   "dependencies": [
     {
       "name": "puppetlabs-stdlib",
