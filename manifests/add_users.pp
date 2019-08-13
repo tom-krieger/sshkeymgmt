@@ -35,8 +35,6 @@ define sshkeymgmt::add_users(
       }
 
       if(! defined(Concat[$myfile]) ) {
-        notify{"File ${myfile}": }
-        notice("File ${myfile}")
         concat { $myfile:
           ensure         => present,
           warn           => true,
