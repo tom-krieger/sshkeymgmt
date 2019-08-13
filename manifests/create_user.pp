@@ -82,7 +82,7 @@ define sshkeymgmt::create_user (
   if (empty($sshkeys) == false) {
 
     if ($sshkeymgmt::authorized_keys_base_dir == '') {
-      $myfile = "${sshkeymgmt::authorized_keys_base_dir}/${myhome}/.ssh/authorized_keys"
+      $myfile = "${myhome}/.ssh/authorized_keys"
     } else {
       $myfile = "${sshkeymgmt::authorized_keys_base_dir}/${user}.authorized_keys"
     }
