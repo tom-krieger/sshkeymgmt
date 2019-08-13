@@ -3,7 +3,7 @@
 #
 # Create unix groups
 # 
-# @param gig
+# @param gid
 #    Numeric group id
 #
 # @param ensure
