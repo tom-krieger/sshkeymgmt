@@ -15,17 +15,17 @@
 #    Group of users to deploy on a host together with their aah keys
 #
 # @param authorized_keys_base_dir
-#    Base directory where to place ssh authorized keys files. se this paramewter if authorized kkes files should not be located in user's 
+#    Base directory where to place ssh authorized keys files. Set this parameter if authorized keys files should not be located in user's 
 #    home directory
 #
 # @param authorized_keys_owner
-#    This parameter must be set if uthorized_keys_base_dir is not empty. This parameter sets the owner of the authorized keys file.
+#    This parameter must be set if authorized_keys_base_dir is not empty. This parameter sets the owner of the authorized keys file.
 #
 # @authorized_keys_group
-#    This parameter must be set if uthorized_keys_base_dir is not empty. This paremeter sets the group of the authorized keys file.
+#    This parameter must be set if authorized_keys_base_dir is not empty. This paremeter sets the group of the authorized keys file.
 #
 # @param authorized_keys_permissions
-#    This parameter must be set if uthorized_keys_base_dir is not empty. This parameter sets the file permissions of the 
+#    This parameter must be set if authorized_keys_base_dir is not empty. This parameter sets the file permissions of the 
 #    authorized keys file.
 #
 # @example

@@ -55,7 +55,7 @@ Group of users to deploy on a host together with their aah keys
 
 Data type: `String`
 
-Base directory where to place ssh authorized keys files. se this paramewter if authorized kkes files should not be located in user's
+Base directory where to place ssh authorized keys files. Set this parameter if authorized keys files should not be located in user's
 home directory
 
 Default value: ''
@@ -64,7 +64,7 @@ Default value: ''
 
 Data type: `String`
 
-This parameter must be set if uthorized_keys_base_dir is not empty. This parameter sets the owner of the authorized keys file.
+This parameter must be set if authorized_keys_base_dir is not empty. This parameter sets the owner of the authorized keys file.
 
 Default value: ''
 
@@ -72,7 +72,7 @@ Default value: ''
 
 Data type: `String`
 
-This parameter must be set if uthorized_keys_base_dir is not empty. This parameter sets the file permissions of the
+This parameter must be set if authorized_keys_base_dir is not empty. This parameter sets the file permissions of the
 authorized keys file.
 
 Default value: ''
