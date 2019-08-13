@@ -52,7 +52,7 @@ Configuration for the class can be done either by Hiera oder by writing the conf
 
 ### Example Hiera data
 
-Configuration of Users, groups and ssh key groups can be distributed into different Hiera files. You can e. g. have all Unix user and group definitions in your most common Hiera file. The ssh groups ou define in the most particular Hiera file describing the node. Using Hiera reduces codeing effort for class usage to
+Configuration of Users, groups and ssh key groups can be distributed into different Hiera files. You can e. g. have all Unix user and group definitions in your most common Hiera file. The ssh groups you can define in the most particular Hiera file describing the node. Using Hiera reduces codeing effort for class usage to
 
 ```puppet
 include '::sshkeymgmt'
