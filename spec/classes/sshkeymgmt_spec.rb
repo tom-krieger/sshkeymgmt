@@ -28,6 +28,10 @@ describe 'sshkeymgmt' do
               'gid' => 5001,
               'ensure' => 'present',
             },
+            'test2' => {
+              'gid' => 5002,
+              'ensure' => 'present',
+            },
           },
           'ssh_key_groups' => {
             'ssh1' => {
@@ -47,6 +51,7 @@ describe 'sshkeymgmt' do
         if ENV['DEBUG']
           pp catalogue.resources
         end
+
         is_expected.to contain_concat('/tmp/test/test1.authorized_keys')
           .with(
             'ensure' => 'present',
@@ -54,12 +59,25 @@ describe 'sshkeymgmt' do
             'group'  => 'root',
             'mode'   => '0644',
           )
+
         is_expected.to contain_concat('/tmp/test/test2.authorized_keys')
           .with(
             'ensure' => 'present',
             'owner'  => 'root',
             'group'  => 'root',
             'mode'   => '0644',
+          )
+
+        is_expected.to contain_group('test1')
+          .with(
+            'ensure' => 'present',
+            'gid' => '5001',
+          )
+
+        is_expected.to contain_group('test2')
+          .with(
+            'ensure' => 'present',
+            'gid' => '5002',
           )
       end
     end # end context
@@ -89,6 +107,10 @@ describe 'sshkeymgmt' do
               'gid' => 5001,
               'ensure' => 'present',
             },
+            'test2' => {
+              'gid' => 5002,
+              'ensure' => 'present',
+            },
           },
           'ssh_key_groups' => {
             'ssh1' => {
@@ -108,6 +130,7 @@ describe 'sshkeymgmt' do
         if ENV['DEBUG']
           pp catalogue.resources
         end
+
         is_expected.to contain_concat('/home/test1/.ssh/authorized_keys')
           .with(
             'ensure' => 'present',
@@ -115,12 +138,25 @@ describe 'sshkeymgmt' do
             'group'  => '5001',
             'mode'   => '0644',
           )
+
         is_expected.to contain_concat('/home/test2/.ssh/authorized_keys')
           .with(
             'ensure' => 'present',
             'owner'  => '5002',
             'group'  => '5002',
             'mode'   => '0644',
+          )
+
+        is_expected.to contain_group('test1')
+          .with(
+            'ensure' => 'present',
+            'gid' => '5001',
+          )
+
+        is_expected.to contain_group('test2')
+          .with(
+            'ensure' => 'present',
+            'gid' => '5002',
           )
       end
     end # end context

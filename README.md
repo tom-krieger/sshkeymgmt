@@ -16,15 +16,15 @@
 
 ## Module description
 
-Sshkeymgmt module is for managing Unix groups and Unix users together with their ssh keys. The module is focused on deploying users in groups. Groups e. g. can be departemens or teams (system administrators) within your organisation. As a group can consist of one member as well the module is not limited to deply users and ssh keys in groups.
+Sshkeymgmt module is for managing Unix groups and Unix users together with their ssh keys. The module is focused on deploying users in groups. Groups e. g. can be departemens or teams (e. g. system administrators) within your organisation. As a group can consist of one member as well the module is not limited to deploy users and ssh keys in groups.
 
-Users used in ssh key groups which are not defined are simly ignored. A notification is printed to inform about that.
+Users used in ssh key groups which are not defined are simply ignored. A notification is printed to inform about that.
 
 ## Setup
 
 ### What sshkeymgmt affects
 
-Sshkeymgmt adds, modifies or deleted Unix users and Unix groups on your systems. As it is run with super user privileges it can affect any user on your systems.
+Sshkeymgmt adds, modifies or deletes Unix users and Unix groups on your systems. As it is run with super user privileges it can affect any user on your systems.
 
 ### Setup Requirements
 
@@ -32,7 +32,7 @@ sshkeymgmt needs puppetlab stdlib and puppetlab concat to work.
 
 ### Beginning with sshkeymgmt
 
-The most basic set-up you could achieve with this module looks something like this:
+The most basic setup you could achieve with this module looks something like this:
 
 ```puppet
 include '::sshkeymgmt'
