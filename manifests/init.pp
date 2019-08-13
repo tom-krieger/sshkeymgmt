@@ -14,12 +14,25 @@
 # @param ssh_key_groups
 #    Group of users to deploy on a host together with their aah keys
 #
+# @param authorized_keys_base_dir
+#
+# @param authorized_keys_owner
+#
+# @authorized_keys_group
+#
+# @param authorized_keys_permissions
+#
+#
 # @example
 #   include sshkeymgmt
 class sshkeymgmt(
   Hash $users ,
   Hash $groups,
-  Hash $ssh_key_groups
+  Hash $ssh_key_groups,
+  String $authorized_keys_base_dir = '',
+  String $authorized_keys_owner = '',
+  String $authorized_keys_group = '',
+  String $authorized_keys_permissions = ''
 ) {
 
   if(empty($users) ) {
@@ -28,6 +41,20 @@ class sshkeymgmt(
 
   if(empty($ssh_key_groups)) {
     notify{'No ssh key groups defined': }
+  }
+
+  if ($authorized_keys_base_dir != '') {
+
+    if(empty($authorized_keys_owner) or empty($authorized_keys_group) or empty($authorized_keys_permissions)) {
+      fail('authorized_keys_owner, authorized_keys_group and authorized_keys_permissions must be set as well!')
+    }
+
+    file{$authorized_keys_base_dir:
+      ensure => directory,
+      owner  => $authorized_keys_owner,
+      group  => $authorized_keys_group,
+      mode   => $authorized_keys_permissions
+    }
   }
 
   create_resources('sshkeymgmt::create_group', $groups)

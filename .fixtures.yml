@@ -2,5 +2,12 @@
 # See https://github.com/puppetlabs/puppetlabs_spec_helper#using-fixtures for details
 ---
 fixtures:
+  symlinks:
+    sshkeymgmt: "#{source_dir}"
   forge_modules:
-#     stdlib: "puppetlabs/stdlib"
+    stdlib:
+      repo: "puppetlabs/stdlib"
+      ref: "6.0.0"
+    concat:
+      repo: "puppetlabs/concat"
+      ref: "6.1.0"

@@ -49,6 +49,12 @@ define sshkeymgmt::create_user (
     $myhome = $homedir
   }
 
+  if ($sshkeymgmt::authorized_keys_base_dir == '') {
+    $mysshkeydir = "${myhome}/.ssh"
+  } else {
+    $mysshkeydir = $sshkeymgmt::authorized_keys_base_dir
+  }
+
   validate_array($sshkeys)
 
   user { $user:
@@ -63,20 +69,27 @@ define sshkeymgmt::create_user (
     uid        => $uid;
   }
 
-  file { "${myhome}/.ssh":
-    ensure  => directory,
-    require => User[$user],
-    owner   => $uid,
-    group   => $gid,
-    mode    => '0755';
+  if ($sshkeymgmt::authorized_keys_base_dir == '') {
+    file { $mysshkeydir:
+      ensure  => directory,
+      require => User[$user],
+      owner   => $uid,
+      group   => $gid,
+      mode    => '0755';
+    }
   }
 
   if (empty($sshkeys) == false) {
-    $myfile = "${myhome}/.ssh/authorized_keys"
+
+    if ($sshkeymgmt::authorized_keys_base_dir == '') {
+      $myfile = "${sshkeymgmt::authorized_keys_base_dir}/${myhome}/.ssh/authorized_keys"
+    } else {
+      $myfile = "${sshkeymgmt::authorized_keys_base_dir}/${user}.authorized_keys"
+    }
 
     concat::fragment { "${uid}-${gid}-auth":
       target  => $myfile,
-      content => epp('sshkeymgmt/authorized_keys.epp', {'sshkeys' => $sshkeys}),
+      content => epp('sshkeymgmt/authorized_keys.epp', {'sshkeys' => $sshkeys})
     }
   }
 }
