@@ -54,7 +54,7 @@ describe 'sshkeymgmt' do
             'group'  => 'root',
             'mode'   => '0644',
           )
-          is_expected.to contain_concat('/tmp/test/test2.authorized_keys')
+        is_expected.to contain_concat('/tmp/test/test2.authorized_keys')
           .with(
             'ensure' => 'present',
             'owner'  => 'root',
