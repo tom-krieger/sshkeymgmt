@@ -75,7 +75,7 @@ Create unix groups
 
 The following parameters are available in the `sshkeymgmt::create_group` defined type.
 
-##### `gig`
+##### `gid`
 
 Numeric group id
 
