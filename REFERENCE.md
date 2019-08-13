@@ -9,8 +9,8 @@
 
 **Defined types**
 
-* [`sshkeymgmt::add_users`](#sshkeymgmtadd_users): Uxer defined resource add_user
-* [`sshkeymgmt::create_group`](#sshkeymgmtcreate_group): User defined resource to create unix groups
+* [`sshkeymgmt::add_users`](#sshkeymgmtadd_users): User defined resource add_user
+* [`sshkeymgmt::create_group`](#sshkeymgmtcreate_group): User defines resource to create unix groups
 * [`sshkeymgmt::create_user`](#sshkeymgmtcreate_user): User defined resource to create unix users
 
 ## Classes
@@ -19,7 +19,7 @@
 
 Create Unix users and Unix groups and roll out the ssh keys of the users.
 Groups of users can be defined and rolled out.
-A single user is regarded as a user group with only one member.
+A user is regarded as a user group with only one member.
 
 #### Examples
 
@@ -49,7 +49,41 @@ Hash with all defined Unix groups
 
 Data type: `Hash`
 
-Group of users to deploy on a host together with their ssh keys
+Group of users to deploy on a host together with their aah keys
+
+##### `authorized_keys_base_dir`
+
+Data type: `String`
+
+Base directory where to place ssh authorized keys files. se this paramewter if authorized kkes files should not be located in user's
+home directory
+
+Default value: ''
+
+##### `authorized_keys_owner`
+
+Data type: `String`
+
+This parameter must be set if uthorized_keys_base_dir is not empty. This parameter sets the owner of the authorized keys file.
+
+Default value: ''
+
+##### `authorized_keys_permissions`
+
+Data type: `String`
+
+This parameter must be set if uthorized_keys_base_dir is not empty. This parameter sets the file permissions of the
+authorized keys file.
+
+Default value: ''
+
+##### `authorized_keys_group`
+
+Data type: `String`
+
+
+
+Default value: ''
 
 ## Defined types
 
@@ -75,7 +109,7 @@ Create unix groups
 
 The following parameters are available in the `sshkeymgmt::create_group` defined type.
 
-##### `gid`
+##### `gig`
 
 Numeric group id
 
@@ -95,11 +129,7 @@ Data type: `Any`
 
 ### sshkeymgmt::create_user
 
-Create unix users
-
-The password to be set
-
-additional groups the user should belong to
+Create Unix users
 
 #### Parameters
 
@@ -145,7 +175,7 @@ Default value: '/bin/bash'
 
 Data type: `Any`
 
-
+The password to be set
 
 Default value: '!!'
 
@@ -161,7 +191,7 @@ Default value: Enum['present', 'absent']
 
 Data type: `Any`
 
-
+additional groups the user should belong to
 
 Default value: []
 
@@ -172,3 +202,4 @@ Data type: `Any`
 ssh keys to be added to the users authorized_keys file
 
 Default value: []
+

@@ -1,5 +1,5 @@
 # @summary
-#    Resource add_user
+#    User defined resource add_user
 #
 # Add users together with their ssh keys to the local uasers on an Unix host
 #
