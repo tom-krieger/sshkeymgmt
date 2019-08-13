@@ -1,7 +1,7 @@
 # @summary 
 #    User defined resource to create unix users
 #
-# Create unix users
+# Create Unix users
 # 
 # @param uid
 #    Numeric uid 
@@ -19,13 +19,13 @@
 #    The Unix shell foer the user
 # 
 # @param password
-# The password to be set
+#    The password to be set
 #
 # @param ensure
 #    Ensure if the user is present or absent. Valid values are 'present' or 'absent'.
 #
 # @param groups
-# additional groups the user should belong to
+#    additional groups the user should belong to
 # 
 # @param sshkeys
 #    ssh keys to be added to the users authorized_keys file

@@ -9,8 +9,8 @@
 
 **Defined types**
 
-* [`sshkeymgmt::add_users`](#sshkeymgmtadd_users): Resource add_user
-* [`sshkeymgmt::create_group`](#sshkeymgmtcreate_group): User defines resource to create unix groups
+* [`sshkeymgmt::add_users`](#sshkeymgmtadd_users): Uxer defined resource add_user
+* [`sshkeymgmt::create_group`](#sshkeymgmtcreate_group): User defined resource to create unix groups
 * [`sshkeymgmt::create_user`](#sshkeymgmtcreate_user): User defined resource to create unix users
 
 ## Classes
@@ -19,7 +19,7 @@
 
 Create Unix users and Unix groups and roll out the ssh keys of the users.
 Groups of users can be defined and rolled out.
-A user is regarded as a user group with only one member.
+A single user is regarded as a user group with only one member.
 
 #### Examples
 
@@ -49,7 +49,7 @@ Hash with all defined Unix groups
 
 Data type: `Hash`
 
-Group of users to deploy on a host together with their aah keys
+Group of users to deploy on a host together with their ssh keys
 
 ## Defined types
 
@@ -172,4 +172,3 @@ Data type: `Any`
 ssh keys to be added to the users authorized_keys file
 
 Default value: []
-
