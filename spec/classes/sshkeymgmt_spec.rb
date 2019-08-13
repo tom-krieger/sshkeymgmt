@@ -3,7 +3,7 @@ require 'pp'
 
 describe 'sshkeymgmt' do
   on_supported_os.each do |os, os_facts|
-    context "on #{os}" do
+    context "on #{os} with alternate ssh directory" do
       let(:facts) { os_facts }
       let(:params) do
         {
@@ -62,6 +62,67 @@ describe 'sshkeymgmt' do
             'mode'   => '0644',
           )
       end
-    end
+    end # end context
+
+    context "on #{os} with home directory" do
+      let(:facts) { os_facts }
+      let(:params) do
+        {
+          'users' => {
+            'test1' => {
+              'ensure' => 'present',
+              'gid' => 5001,
+              'uid' => 5001,
+              'homedir' => '/home/test1',
+              'sshkeys' => ['ssh-rsa AAAA...Hot Test1'],
+            },
+            'test2' => {
+              'ensure' => 'present',
+              'gid' => 5002,
+              'uid' => 5002,
+              'homedir' => '/home/test2',
+              'sshkeys' => ['ssh-rsa AAAA...pnd Test2'],
+            },
+          },
+          'groups' => {
+            'test1' => {
+              'gid' => 5001,
+              'ensure' => 'present',
+            },
+          },
+          'ssh_key_groups' => {
+            'ssh1' => {
+              'ssh_users' => ['test1', 'test2'],
+            },
+          },
+          'authorized_keys_base_dir' => '',
+          'authorized_keys_owner' => '',
+          'authorized_keys_group' => '',
+          'authorized_keys_permissions' => '',
+        }
+      end
+
+      it { is_expected.to compile }
+
+      it do
+        if ENV['DEBUG']
+          pp catalogue.resources
+        end
+        is_expected.to contain_concat('/home/test1/.ssh/authorized_keys')
+          .with(
+            'ensure' => 'present',
+            'owner'  => '5001',
+            'group'  => '5001',
+            'mode'   => '0644',
+          )
+        is_expected.to contain_concat('/home/test2/.ssh/authorized_keys')
+          .with(
+            'ensure' => 'present',
+            'owner'  => '5002',
+            'group'  => '5002',
+            'mode'   => '0644',
+          )
+      end
+    end # end context
   end
 end

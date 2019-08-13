@@ -29,7 +29,7 @@ define sshkeymgmt::add_users(
         $myfile = "${user_data_hash[$ssh_user]['homedir']}/.ssh/authorized_keys"
         $myowner = $user_data_hash[$ssh_user]['uid']
         $mygroup = $user_data_hash[$ssh_user]['gid']
-        $mymode = '0755'
+        $mymode = '0644'
       } else {
         $myfile = "${sshkeymgmt::authorized_keys_base_dir}/${ssh_user}.authorized_keys"
       }
