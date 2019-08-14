@@ -44,15 +44,15 @@ or
 class { '::sshkeymgmt': }
 ```
 
-If there are no Unix users, no Unix groups and no ssh key groups the module will print a notification only.
+If there are no Unix users, no Unix groups or no ssh key groups the module will print a notification only.
 
 ## Usage
 
-Configuration for the class can be done either by Hiera oder by writing the configuration directly into the class statement.
+Configuration for the class can be done either by Hiera or by writing the configuration directly into the class statement.
 
 ### Example Hiera data
 
-Configuration of users, groups and ssh key groups can be distributed into different Hiera files. You can e. g. have all Unix user and group definitions in your most common Hiera file. The ssh groups you can define in the most recent Hiera file describing the node. Using Hiera reduces codeing effort for class usage to
+Configuration of users, groups and ssh key groups can be distributed over different Hiera files. You can for example have all Unix user and group definitions in your most common Hiera file. The ssh groups can be defined in the most recent Hiera file describing the node. Using Hiera reduces coding effort for class usage to
 
 ```puppet
 include '::sshkeymgmt'
@@ -64,7 +64,7 @@ or
 class { 'sshkeymgmt': }
 ```
 
-#### common.yaml
+#### Example common.yaml
 
 ```puppet
 ---
@@ -111,7 +111,7 @@ sshkeymgmt::users:
       - ssh-rsa AAAA ... Test4
 ```
 
-#### node1.yaml
+#### Example node1.yaml
 
 The ssh keys and Unix users can be grouped by teams or departments or whatever groups you want to define.
 
@@ -128,7 +128,7 @@ sshkeymgmt::ssh_key_groups:
       - test2
 ```
 
-### Class usage
+### Class usage example
 
 The users, groups and ssh key groups can be defined in Puppet code as well.
 
