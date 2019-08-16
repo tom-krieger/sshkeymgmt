@@ -20,6 +20,8 @@ Sshkeymgmt module is for managing Unix groups and Unix users together with their
 
 Users used in ssh key groups which are not defined are simply ignored. A notification is printed to inform about that.
 
+> Please make sure to configure your ssh daemon accordingly to the location the ssh authorized_keys files will be located.
+
 ## Setup
 
 ### What sshkeymgmt affects
@@ -169,7 +171,7 @@ See [REFERENCE.md](https://github.com/tom-krieger/sshkeymgmt/blob/master/REFEREN
 
 ## Limitations
 
-This module has been tested on several Unix platforms, and no issues have been identified.
+This module has been tested on several Unix platforms, and no issues have been identified. But this module does not care about the *sshd* configuration. Please make sure the ssh authorized_keys files are stored in the location the *sshd* is expecting.
 
 For an extensive list of supported operating systems, see [metadata.json](https://github.com/tom-krieger/sshkeymgmt/blob/master/metadata.json)
 
