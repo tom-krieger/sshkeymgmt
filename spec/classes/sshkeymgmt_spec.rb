@@ -22,6 +22,11 @@ describe 'sshkeymgmt' do
               'homedir' => '/home/test2',
               'sshkeys' => ['ssh-rsa AAAA...pnd Test2'],
             },
+            'test4' => {
+              'ensure' => 'absent',
+              'gid' => 5002,
+              'uid' => 5002,
+            },
           },
           'groups' => {
             'test1' => {
@@ -100,6 +105,11 @@ describe 'sshkeymgmt' do
               'uid' => 5002,
               'homedir' => '/home/test2',
               'sshkeys' => ['ssh-rsa AAAA...pnd Test2'],
+            },
+            'test4' => {
+              'ensure' => 'absent',
+              'gid' => 5002,
+              'uid' => 5002,
             },
           },
           'groups' => {
