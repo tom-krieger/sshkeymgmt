@@ -68,20 +68,20 @@ This parameter must be set if authorized_keys_base_dir is not empty. This parame
 
 Default value: ''
 
+##### `authorized_keys_group`
+
+Data type: `String`
+
+This parameter must be set if authorized_keys_base_dir is not empty. This paremeter sets the group of the authorized keys file.
+
+Default value: ''
+
 ##### `authorized_keys_permissions`
 
 Data type: `String`
 
 This parameter must be set if authorized_keys_base_dir is not empty. This parameter sets the file permissions of the
 authorized keys file.
-
-Default value: ''
-
-##### `authorized_keys_group`
-
-Data type: `String`
-
-
 
 Default value: ''
 
@@ -109,7 +109,9 @@ Create unix groups
 
 The following parameters are available in the `sshkeymgmt::create_group` defined type.
 
-##### `gig`
+##### `gid`
+
+Data type: `Any`
 
 Numeric group id
 
@@ -120,12 +122,6 @@ Data type: `Any`
 Ensure if group is present or absent. Valid values are 'present' or 'absent'.
 
 Default value: Enum['present', 'absent']
-
-##### `gid`
-
-Data type: `Any`
-
-
 
 ### sshkeymgmt::create_user
 

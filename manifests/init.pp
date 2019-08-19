@@ -21,7 +21,7 @@
 # @param authorized_keys_owner
 #    This parameter must be set if authorized_keys_base_dir is not empty. This parameter sets the owner of the authorized keys file.
 #
-# @authorized_keys_group
+# @param authorized_keys_group
 #    This parameter must be set if authorized_keys_base_dir is not empty. This paremeter sets the group of the authorized keys file.
 #
 # @param authorized_keys_permissions
