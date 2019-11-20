@@ -10,7 +10,6 @@
 **Defined types**
 
 * [`sshkeymgmt::add_users`](#sshkeymgmtadd_users): User defined resource add_user
-* [`sshkeymgmt::create_group`](#sshkeymgmtcreate_group): User defines resource to create unix groups
 * [`sshkeymgmt::create_user`](#sshkeymgmtcreate_user): User defined resource to create unix users
 
 ## Classes
@@ -101,28 +100,6 @@ Data type: `Array`
 
 List of users
 
-### sshkeymgmt::create_group
-
-Create unix groups
-
-#### Parameters
-
-The following parameters are available in the `sshkeymgmt::create_group` defined type.
-
-##### `gid`
-
-Data type: `Any`
-
-Numeric group id
-
-##### `ensure`
-
-Data type: `Any`
-
-Ensure if group is present or absent. Valid values are 'present' or 'absent'.
-
-Default value: Enum['present', 'absent']
-
 ### sshkeymgmt::create_user
 
 Create Unix users
@@ -133,19 +110,19 @@ The following parameters are available in the `sshkeymgmt::create_user` defined 
 
 ##### `uid`
 
-Data type: `Any`
+Data type: `Integer`
 
 Numeric uid
 
 ##### `gid`
 
-Data type: `Any`
+Data type: `Integer`
 
 Numeric group id
 
 ##### `homedir`
 
-Data type: `Any`
+Data type: `String`
 
 Home directory of the user. If empty it will be created from '/home' and the username
 
@@ -153,7 +130,7 @@ Default value: ''
 
 ##### `comment`
 
-Data type: `Any`
+Data type: `String`
 
 Comment describing the user
 
@@ -161,7 +138,7 @@ Default value: ''
 
 ##### `shell`
 
-Data type: `Any`
+Data type: `String`
 
 The Unix shell foer the user
 
@@ -169,7 +146,7 @@ Default value: '/bin/bash'
 
 ##### `password`
 
-Data type: `Any`
+Data type: `String`
 
 The password to be set
 
@@ -177,15 +154,15 @@ Default value: '!!'
 
 ##### `ensure`
 
-Data type: `Any`
+Data type: `Enum['present', 'absent']`
 
 Ensure if the user is present or absent. Valid values are 'present' or 'absent'.
 
-Default value: Enum['present', 'absent']
+Default value: 'present'
 
 ##### `groups`
 
-Data type: `Any`
+Data type: `Array`
 
 additional groups the user should belong to
 
@@ -193,7 +170,7 @@ Default value: []
 
 ##### `sshkeys`
 
-Data type: `Any`
+Data type: `Array`
 
 ssh keys to be added to the users authorized_keys file
 

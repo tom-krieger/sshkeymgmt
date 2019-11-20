@@ -89,7 +89,7 @@ sshkeymgmt::users:
     homedir: '/home/test1'
     sshkeys:
       - ssh-rsa AAAA ... Test1
-      - ssh-rsa AAAA ... Tom
+      - ssh-rsa AAAA ... Test5
   test2:
     ensure: present
     gid: 5002
@@ -148,7 +148,7 @@ $users = {
     gid => 5001,
     uid => 5001,
     homedir => '/home/test1',
-    sshkeys => ['ssh-rsa AAAA ... Test1', 'ssh-rsa AAAA ... Tom']
+    sshkeys => ['ssh-rsa AAAA ... Test1', 'ssh-rsa AAAA ... Test5']
   }
 }
 
