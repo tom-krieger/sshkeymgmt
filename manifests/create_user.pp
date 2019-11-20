@@ -31,15 +31,15 @@
 #    ssh keys to be added to the users authorized_keys file
 # 
 define sshkeymgmt::create_user (
-  $uid,
-  $gid,
-  $homedir     = '',
-  $comment  = '',
-  $shell    = '/bin/bash',
-  $password = '!!',
-  $ensure   = Enum['present', 'absent'],
-  $groups   = [],
-  $sshkeys  = []) {
+  Integer $uid,
+  Integer $gid,
+  String $homedir                   = '',
+  String $comment                   = '',
+  String $shell                     = '/bin/bash',
+  String $password                  = '!!',
+  Enum['present', 'absent'] $ensure = 'present',
+  Array $groups                     = [],
+  Array $sshkeys                    = []) {
 
   $user = $title
 
@@ -54,8 +54,6 @@ define sshkeymgmt::create_user (
   } else {
     $mysshkeydir = $sshkeymgmt::authorized_keys_base_dir
   }
-
-  validate_array($sshkeys)
 
   user { $user:
     ensure     => $ensure,

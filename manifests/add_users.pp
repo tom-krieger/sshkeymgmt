@@ -16,7 +16,7 @@ define sshkeymgmt::add_users(
   if ($sshkeymgmt::authorized_keys_base_dir != '') {
     $myowner = $sshkeymgmt::authorized_keys_owner
     $mygroup = $sshkeymgmt::authorized_keys_group
-    $mymode = $sshkeymgmt::authorized_keys_permissions
+    $mymode  = $sshkeymgmt::authorized_keys_permissions
   }
 
   $ssh_users.each |String $ssh_user| {

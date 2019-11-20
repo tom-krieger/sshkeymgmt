@@ -62,7 +62,12 @@ class sshkeymgmt(
     }
   }
 
-  create_resources('sshkeymgmt::create_group', $groups)
+  $groups.each | $group, $group_data | {
+    group { $group:
+      ensure => $group_data['ensure'],
+      gid    => $group_data['gid'];
+    }
+  }
 
   create_resources('sshkeymgmt::add_users', $ssh_key_groups)
 }
