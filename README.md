@@ -179,6 +179,8 @@ For an extensive list of supported operating systems, see [metadata.json](https:
 
 Contributions are welcome in any form, pull requests, and issues should be filed via GitHub.
 
+Please add acceptance tests for your code as well. There's a script *acc_tests.sh* which runs the tests for CentOS 7 and Ubuntu 18.04.
+
 ## Changelog
 
 See [CHANGELOG.md](https://github.com/tom-krieger/sshkeymgmt/blob/master/CHANGELOG.md)

@@ -47,7 +47,7 @@ describe 'sshkeymgmt' do
       }
     end
   
-      it { is_expected.to compile.and_raise_error(/authorized_keys_owner, authorized_keys_group and authorized_keys_permissions must be set as well/) }
+      it { is_expected.to compile.and_raise_error(/authorized_keys_owner, authorized_keys_group, authorized_keys_base_dir_permissions and authorized_keys_permissions must be set as well/) }
     end
 
     context "on #{os} with alternate ssh directory" do
@@ -94,6 +94,7 @@ describe 'sshkeymgmt' do
           'authorized_keys_owner' => 'root',
           'authorized_keys_group' => 'root',
           'authorized_keys_permissions' => '0644',
+          'authorized_keys_base_dir_permissions' => '0755',
         }
       end
 
@@ -186,6 +187,7 @@ describe 'sshkeymgmt' do
           'authorized_keys_owner' => '',
           'authorized_keys_group' => '',
           'authorized_keys_permissions' => '',
+          'authorized_keys_base_dir_permissions' => '',
         }
       end
 

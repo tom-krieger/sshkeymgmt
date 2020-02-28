@@ -84,6 +84,14 @@ authorized keys file.
 
 Default value: ''
 
+##### `authorized_keys_base_dir_permissions`
+
+Data type: `String`
+
+
+
+Default value: ''
+
 ## Defined types
 
 ### sshkeymgmt::add_users
