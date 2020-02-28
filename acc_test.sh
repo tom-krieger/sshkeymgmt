@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # install all needed gems locally
-bundle install --path .bundle/gems/
+# bundle install --path .bundle/gems/
 
 # fire up two docker containers
 bundle exec rake 'litmus:provision[docker, centos:7]'
