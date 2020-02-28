@@ -1,4 +1,4 @@
-#!/bn/bash
+#!/bin/bash
 
 bundle exec rake 'litmus:provision[docker, centos:7]'
 bundle exec rake 'litmus:provision[docker, ubuntu:18.04]'
