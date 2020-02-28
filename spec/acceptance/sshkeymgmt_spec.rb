@@ -96,7 +96,7 @@ def test_sshkeys(pp, expected_contain, filename)
   expect(file(filename)).to contain expected_contain
 end
 
-describe 'Message ssh keys' do
+describe 'Manage ssh keys' do
   context 'when alternate ssh dir is used for ssh keys user test1' do
     it do
       test_sshkeys(pp_alt_ssh_dir, "ssh-rsa AAAA...Hot Test1", '/tmp/test/test1.authorized_keys')
