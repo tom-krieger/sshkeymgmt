@@ -11,6 +11,9 @@ bundle exec rake 'litmus:provision_list[puppetcamp]'
 # install Puppet agent
 bundle exec rake litmus:install_agent
 
+# create symlink for puppet in vagrant environments
+# bolt command run 'ln -s /opt/puppetlabs/puppet/bin/puppet /usr/local/bin/puppet' --run-as root -i inventory.yaml --targets ssh_nodes
+
 # install Puppet module to test
 bundle exec rake litmus:install_module
 
