@@ -88,7 +88,7 @@ Default value: ''
 
 Data type: `String`
 
-
+The permissions of the directory containing the ssh kex files if not stored within the user's home directory.
 
 Default value: ''
 
