@@ -5,6 +5,9 @@ default:
 puppetcamp:
   provisioner: docker
   images: ['centos:7', 'ubuntu:18.04']
+puppetcamp_vagrant:
+  provisioner: vagrant
+  images: ['centos/7', 'generic/ubuntu1804']
 vagrant:
   provisioner: vagrant
   images: ['centos/7', 'generic/ubuntu1804', 'gusztavvargadr/windows-server']

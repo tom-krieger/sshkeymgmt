@@ -15,7 +15,7 @@ bundle exec rake litmus:install_agent
 bundle exec rake litmus:install_module
 
 # run tests in parallel with less output
-bundle exec rake litmus:acceptance:parallel 
+bundle exec rake litmus:acceptance:parallel
 
 # run tests with more output
 #TARGET_HOST=localhost:2222 bundle exec rspec ./spec/acceptance --format d
