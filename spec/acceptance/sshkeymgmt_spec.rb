@@ -99,13 +99,13 @@ end
 describe 'Manage ssh keys' do
   context 'when alternate ssh dir is used for ssh keys user test1' do
     it do
-      test_sshkeys(pp_alt_ssh_dir, "ssh-rsa AAAA...Hot Test1", '/tmp/test/test1.authorized_keys')
+      test_sshkeys(pp_alt_ssh_dir, 'ssh-rsa AAAA...Hot Test1', '/tmp/test/test1.authorized_keys')
     end
   end
 
   context 'when alternate ssh dir is used for ssh keys user test2' do
     it do
-      test_sshkeys(pp_alt_ssh_dir, "ssh-rsa AAAA...pnd Test2", '/tmp/test/test2.authorized_keys')
+      test_sshkeys(pp_alt_ssh_dir, 'ssh-rsa AAAA...pnd Test2', '/tmp/test/test2.authorized_keys')
     end
   end
 
@@ -123,13 +123,13 @@ describe 'Manage ssh keys' do
 
   context 'when ssh keys reside within user home dir user test1' do
     it do
-      test_sshkeys(pp_ssh_dir_in_user_home, "ssh-rsa AAAA...Hot Test1", '/home/test1/.ssh/authorized_keys')
+      test_sshkeys(pp_ssh_dir_in_user_home, 'ssh-rsa AAAA...Hot Test1', '/home/test1/.ssh/authorized_keys')
     end
   end
 
   context 'when ssh keys reside within user home dir user test2' do
     it do
-      test_sshkeys(pp_ssh_dir_in_user_home, "ssh-rsa AAAA...pnd Test2", '/home/test2/.ssh/authorized_keys')
+      test_sshkeys(pp_ssh_dir_in_user_home, 'ssh-rsa AAAA...pnd Test2', '/home/test2/.ssh/authorized_keys')
     end
   end
 

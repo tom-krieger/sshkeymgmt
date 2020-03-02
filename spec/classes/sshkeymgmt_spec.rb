@@ -4,50 +4,50 @@ require 'pp'
 describe 'sshkeymgmt' do
   on_supported_os.each do |os, os_facts|
     context "on #{os} with wrong parameters" do
-    let(:facts) { os_facts }
-    let(:params) do
-      {
-        'users' => {
-          'test1' => {
-            'ensure' => 'present',
-            'gid' => 5001,
-            'uid' => 5001,
-            'homedir' => '/home/test1',
-            'sshkeys' => ['ssh-rsa AAAA...Hot Test1'],
+      let(:facts) { os_facts }
+      let(:params) do
+        {
+          'users' => {
+            'test1' => {
+              'ensure' => 'present',
+              'gid' => 5001,
+              'uid' => 5001,
+              'homedir' => '/home/test1',
+              'sshkeys' => ['ssh-rsa AAAA...Hot Test1'],
+            },
+            'test2' => {
+              'ensure' => 'present',
+              'gid' => 5002,
+              'uid' => 5002,
+              'homedir' => '/home/test2',
+              'sshkeys' => ['ssh-rsa AAAA...pnd Test2'],
+            },
+            'test4' => {
+              'ensure' => 'absent',
+              'gid' => 5002,
+              'uid' => 5002,
+            },
           },
-          'test2' => {
-            'ensure' => 'present',
-            'gid' => 5002,
-            'uid' => 5002,
-            'homedir' => '/home/test2',
-            'sshkeys' => ['ssh-rsa AAAA...pnd Test2'],
+          'groups' => {
+            'test1' => {
+              'gid' => 5001,
+              'ensure' => 'present',
+            },
+            'test2' => {
+              'gid' => 5002,
+              'ensure' => 'present',
+            },
           },
-          'test4' => {
-            'ensure' => 'absent',
-            'gid' => 5002,
-            'uid' => 5002,
+          'ssh_key_groups' => {
+            'ssh1' => {
+              'ssh_users' => ['test1', 'test2'],
+            },
           },
-        },
-        'groups' => {
-          'test1' => {
-            'gid' => 5001,
-            'ensure' => 'present',
-          },
-          'test2' => {
-            'gid' => 5002,
-            'ensure' => 'present',
-          },
-        },
-        'ssh_key_groups' => {
-          'ssh1' => {
-            'ssh_users' => ['test1', 'test2'],
-          },
-        },
-        'authorized_keys_base_dir' => '/tmp/test',
-      }
-    end
-  
-      it { is_expected.to compile.and_raise_error(/authorized_keys_owner, authorized_keys_group, authorized_keys_base_dir_permissions and authorized_keys_permissions must be set as well/) }
+          'authorized_keys_base_dir' => '/tmp/test',
+        }
+      end
+
+      it { is_expected.to compile.and_raise_error(%r{authorized_keys_owner, authorized_keys_group, authorized_keys_base_dir_permissions and authorized_keys_permissions must be set as well}) }
     end
 
     context "on #{os} with alternate ssh directory" do
@@ -107,7 +107,7 @@ describe 'sshkeymgmt' do
 
         is_expected.to contain_file('/tmp/test')
           .with(
-            'ensure'  => 'directory',
+            'ensure' => 'directory',
             'owner'  => 'root',
             'group'  => 'root',
             'mode'   => '0755',
@@ -207,7 +207,7 @@ describe 'sshkeymgmt' do
           )
           .that_requires('User[test1]')
 
-          is_expected.to contain_file('/home/test2/.ssh')
+        is_expected.to contain_file('/home/test2/.ssh')
           .with(
             'ensure'  => 'directory',
             'owner'   => 5002,
@@ -241,7 +241,7 @@ describe 'sshkeymgmt' do
             'uid'        => 5001,
           )
 
-          is_expected.to contain_user('test2')
+        is_expected.to contain_user('test2')
           .with(
             'ensure'     => 'present',
             'gid'        => 5002,
