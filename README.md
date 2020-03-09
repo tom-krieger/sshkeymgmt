@@ -11,8 +11,9 @@
 4. [Reference](#reference)
 5. [Limitations - OS compatibility, etc.](#limitations)
 6. [Development - Guide for contributing to the module](#development)
-7. [Changelog](#changelog)
-8. [Contributors](#contributors)
+7. [Acceptance tests](#acceptance-tests)
+8. [Changelog](#changelog)
+9. [Contributors](#contributors)
 
 ## Module description
 
@@ -178,6 +179,10 @@ For an extensive list of supported operating systems, see [metadata.json](https:
 ## Development
 
 Contributions are welcome in any form, pull requests, and issues should be filed via GitHub.
+
+## Acceptance tests
+
+Please add acceptance tests for your code as well. There's a script *acc_tests.sh* which runs the tests for CentOS 7 and Ubuntu 18.04.
 
 ## Changelog
 
