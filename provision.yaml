@@ -1,0 +1,10 @@
+---
+default:
+  provisioner: docker
+  images: ['centos:7']
+docker:
+  provisioner: docker
+  images: ['centos:7', 'ubuntu:18.04']
+vagrant:
+  provisioner: vagrant
+  images: ['centos/7', 'generic/ubuntu1804']

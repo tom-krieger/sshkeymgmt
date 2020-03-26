@@ -182,7 +182,7 @@ Contributions are welcome in any form, pull requests, and issues should be filed
 
 ## Acceptance tests
 
-Please add acceptance tests for your code as well. There's a script *acc_tests.sh* which runs the tests for CentOS 7 and Ubuntu 18.04.
+Please add acceptance tests for your code as well. There's a script *run_acceptance_tests.sh* in the *scripts* folder which runs the tests for CentOS 7 and Ubuntu 18.04.
 
 ## Changelog
 
