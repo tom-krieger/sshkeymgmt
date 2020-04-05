@@ -2,6 +2,7 @@
 
 require 'puppet_litmus'
 require 'singleton'
+require 'pp'
 
 class Helper
   include Singleton
@@ -23,4 +24,48 @@ def test_sshkeys(pp, expected_contain, filename)
   return unless os[:family] != 'windows'
   expect(file(filename)).to be_file
   expect(file(filename)).to contain expected_contain
+end
+
+# @summary: read hosts and ports for ssh connect from inventory file
+#
+# @return [array] hosts: Hash of host and port pairs
+#
+def read_hosts_ssh_ports
+  hosts = []
+  inv = inventory_hash_from_inventory_file
+  inv['groups'].each do |group|
+    name = group['name']
+    next unless name == 'ssh_nodes'
+    targets = group['targets']
+    targets.each do |target|
+      uri = target['uri']
+      (host, port) = uri.split(':')
+      hosts << {
+        'host' => host,
+        'port' => port,
+      }
+    end
+  end
+  hosts
+end
+
+# @summary: connect to a host using ssh and excute hostname
+#
+# @param [string] host: host to connect by ssh
+# @param [int] port: port to connect
+# @param [string] user: user to connect with
+# @param [array] keys: array with ssh keys to use for connect
+#
+def connect_by_ssh(host, port, user, keys)
+  hn = ''
+  Net::SSH.start(
+    host, user,
+    port: port,
+    keys: keys,
+    timeout: 1,
+    password: 'none'
+  ) do |session|
+    hn = session.exec!('hostname')
+  end
+  hn.chomp!
 end
