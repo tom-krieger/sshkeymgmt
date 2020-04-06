@@ -18,6 +18,7 @@ end
 # @param [string]  pp:                  Puppet code definition to be tested
 # @param [string]  expected_contain:    Expected contents of the file to be compared
 # @param [string]  filename:            file to be tested
+#
 def test_sshkeys(pp, expected_contain, filename)
   idempotent_apply(pp)
 
@@ -49,12 +50,12 @@ def read_hosts_ssh_ports
   hosts
 end
 
-# @summary: connect to a host using ssh and excute hostname
+# @summary: connect to a host using ssh and execute hostname
 #
 # @param [string] host: host to connect by ssh
-# @param [int] port: port to connect
+# @param [int]    port: port to connect
 # @param [string] user: user to connect with
-# @param [array] keys: array with ssh keys to use for connect
+# @param [array]  keys: array with ssh keys to use for connect
 #
 def connect_by_ssh(host, port, user, keys)
   hn = ''

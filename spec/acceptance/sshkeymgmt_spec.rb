@@ -85,11 +85,6 @@ pp_ssh_dir_in_user_home = <<-PUPPETCODE
     }
 PUPPETCODE
 
-hosts = read_hosts_ssh_ports
-users = ['test1', 'test2']
-keydir = File.join(Dir.pwd, 'spec', 'fixtures', 'keys')
-keys = ["#{keydir}/id_rsa_test1", "#{keydir}/id_rsa_test2"]
-
 describe 'Manage ssh keys' do
   context 'when alternate ssh dir is used for ssh keys user test1' do
     it do
@@ -138,6 +133,11 @@ describe 'Manage ssh keys' do
       test_sshkeys(pp_alt_ssh_dir, 'test2:x:5002:', '/etc/group')
     end
   end
+
+  hosts = read_hosts_ssh_ports
+  users = ['test1', 'test2']
+  keydir = File.join(Dir.pwd, 'spec', 'fixtures', 'keys')
+  keys = ["#{keydir}/id_rsa_test1", "#{keydir}/id_rsa_test2"]
 
   context 'ssh login with keys installed' do
     it do
