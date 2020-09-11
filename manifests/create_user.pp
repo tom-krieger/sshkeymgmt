@@ -55,7 +55,7 @@ define sshkeymgmt::create_user (
     $mysshkeydir = $sshkeymgmt::authorized_keys_base_dir
   }
 
-  user { $user:
+  ensure_resource('user', $user, {
     ensure     => $ensure,
     gid        => $gid,
     comment    => $comment,
@@ -64,8 +64,8 @@ define sshkeymgmt::create_user (
     password   => $password,
     managehome => true,
     groups     => $groups,
-    uid        => $uid;
-  }
+    uid        => $uid,
+  })
 
   if ($sshkeymgmt::authorized_keys_base_dir == '') {
     file { $mysshkeydir:
