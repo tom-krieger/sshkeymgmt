@@ -1,6 +1,6 @@
 {
   "name": "tomkrieger-sshkeymgmt",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "author": "Thomas Krieger",
   "summary": "Manage Unix users, groups and ssh keys",
   "license": "Apache-2.0",
@@ -93,7 +93,7 @@
       "version_requirement": ">= 4.10.0 < 7.0.0"
     }
   ],
-  "pdk-version": "1.17.0",
-  "template-url": "pdk-default#1.17.0",
-  "template-ref": "tags/1.17.0-0-gd3a4319"
+  "pdk-version": "1.18.1",
+  "template-url": "pdk-default#1.18.1",
+  "template-ref": "tags/1.18.1-0-g3d2e75c"
 }

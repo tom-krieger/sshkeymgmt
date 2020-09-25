@@ -1,5 +1,9 @@
 # Changelog
 
+## release 0.9.3
+
+* updated pdk version
+
 ## Release 0.9.2
 
 * Added acceptance tests using Puppet Litmus
