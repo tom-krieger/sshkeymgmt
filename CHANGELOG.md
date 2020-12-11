@@ -6,7 +6,7 @@
 
 ## release 0.9.3
 
-* updated pdk version
+* updated pdk version (not published)
 
 ## Release 0.9.2
 
