@@ -1,6 +1,6 @@
 {
   "name": "tomkrieger-sshkeymgmt",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "author": "Thomas Krieger",
   "summary": "Manage Unix users, groups and ssh keys",
   "license": "Apache-2.0",
