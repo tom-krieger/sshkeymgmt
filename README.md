@@ -13,7 +13,6 @@
 6. [Development - Guide for contributing to the module](#development)
 7. [Acceptance tests](#acceptance-tests)
 8. [Changelog](#changelog)
-9. [Contributors](#contributors)
 
 ## Module description
 
@@ -188,4 +187,3 @@ Please add acceptance tests for your code as well. There's a script *run_accepta
 
 See [CHANGELOG.md](https://github.com/tom-krieger/sshkeymgmt/blob/master/CHANGELOG.md)
 
-## Contributors
