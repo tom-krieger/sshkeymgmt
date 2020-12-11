@@ -56,7 +56,7 @@ class sshkeymgmt(
 
     if(empty($authorized_keys_owner) or empty($authorized_keys_group) or
       empty($authorized_keys_permissions) or empty($authorized_keys_base_dir_permissions)) {
-      fail(translate('authorized_keys_owner, authorized_keys_group, authorized_keys_base_dir_permissions and authorized_keys_permissions must be set as well!')) #lint:ignore:140chars
+      fail('authorized_keys_owner, authorized_keys_group, authorized_keys_base_dir_permissions and authorized_keys_permissions must be set as well!') #lint:ignore:140chars
     }
 
     file{$authorized_keys_base_dir:
