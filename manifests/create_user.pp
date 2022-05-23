@@ -36,7 +36,7 @@ define sshkeymgmt::create_user (
   String $homedir                   = '',
   String $comment                   = '',
   String $shell                     = '/bin/bash',
-  String $password                  = '!!',
+  String $password                  = '!!',               #lint:ignore:security_password_in_code
   Enum['present', 'absent'] $ensure = 'present',
   Array $groups                     = [],
   Array $sshkeys                    = []) {

@@ -46,7 +46,18 @@ RSpec.configure do |c|
   end
   c.filter_run_excluding(bolt: true) unless ENV['GEM_BOLT']
   c.after(:suite) do
-    RSpec::Puppet::Coverage.report!(0)
+  end
+
+  # Filter backtrace noise
+  backtrace_exclusion_patterns = [
+    %r{spec_helper},
+    %r{gems},
+  ]
+
+  if c.respond_to?(:backtrace_exclusion_patterns)
+    c.backtrace_exclusion_patterns = backtrace_exclusion_patterns
+  elsif c.respond_to?(:backtrace_clean_patterns)
+    c.backtrace_clean_patterns = backtrace_exclusion_patterns
   end
 end
 
@@ -60,3 +71,9 @@ def ensure_module_defined(module_name)
 end
 
 # 'spec_overrides' from sync.yml will appear below this line
+RSpec.configure do |c|
+  c.hiera_config = File.expand_path(File.join(File.dirname(__FILE__), '/fixtures/hiera/hiera.yaml'))
+  c.after(:suite) do
+    RSpec::Puppet::Coverage.report!(80)
+  end
+end

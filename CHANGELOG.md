@@ -1,10 +1,16 @@
 # Changelog
 
-## release 0.9.4
+## Release 1.0.0
+
+* Updated to pdk 2.4.0
+* Updated dependencies
+* Updated supported Puppet versions and supported OSes
+
+## Release 0.9.4
 
 * removed puppetlabs translate module. Thanks Ben Ford for the pull request addressing this.
 
-## release 0.9.3
+## Release 0.9.3
 
 * updated pdk version (not published)
 
