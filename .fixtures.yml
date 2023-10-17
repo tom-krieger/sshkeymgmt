@@ -5,26 +5,24 @@ fixtures:
   symlinks:
     sshkeymgmt: "#{source_dir}"
   repositories:
-    provision: 'git://github.com/puppetlabs/provision.git'
+    provision:
+      repo: "https://github.com/puppetlabs/provision.git"
+      branch: "main"
   forge_modules:
-    facts:
-      repo: "puppetlabs-facts"
-      ref: "1.0.0"
-    inifile:
-      repo: "puppetlabs-inifile"
-      ref: "4.1.0"
-    apt:
-      repo: "puppetlabs-apt"
-      ref: "7.3.0"
-    puppet_agent:
-      repo: "puppetlabs-puppet_agent"
-      ref: "3.0.2"
-    registry:
-      repo: "puppetlabs-registry"
-      ref: "3.1.0"
-    stdlib:
-      repo: "puppetlabs/stdlib"
-      ref: "6.0.0"
-    concat:
-      repo: "puppetlabs/concat"
-      ref: "6.1.0"
+    stdlib: "puppetlabs/stdlib"
+    concat: "puppetlabs/concat"
+    # facts:
+    #   repo: "puppetlabs/facts"
+    #   ref: "1.0.0"
+    # inifile:
+    #   repo: "puppetlabs/inifile"
+    #   ref: "4.1.0"
+    # apt:
+    #   repo: "puppetlabs/apt"
+    #   ref: "7.3.0"
+    # puppet_agent:
+    #   repo: "puppetlabs/puppet_agent"
+    #   ref: "3.0.2"
+    # registry:
+    #   repo: "puppetlabs/registry"
+    #   ref: "3.1.0"

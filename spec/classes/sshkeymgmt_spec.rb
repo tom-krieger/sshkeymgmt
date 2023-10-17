@@ -277,5 +277,135 @@ describe 'sshkeymgmt' do
           )
       end
     end # end context
+
+    context "on #{os} with home directory without defined ssh directory" do
+      let(:facts) { os_facts }
+      let(:params) do
+        {
+          'users' => {
+            'test1' => {
+              'ensure' => 'present',
+              'gid' => 5001,
+              'uid' => 5001,
+              'homedir' => '/home/test1',
+              'sshkeys' => ['ssh-rsa AAAA...Hot Test1'],
+            },
+            'test2' => {
+              'ensure' => 'present',
+              'gid' => 5002,
+              'uid' => 5002,
+              'homedir' => '/home/test2',
+              'sshkeys' => ['ssh-rsa AAAA...pnd Test2'],
+            },
+            'test4' => {
+              'ensure' => 'absent',
+              'gid' => 5002,
+              'uid' => 5002,
+            },
+          },
+          'groups' => {
+            'test1' => {
+              'gid' => 5001,
+              'ensure' => 'present',
+            },
+            'test2' => {
+              'gid' => 5002,
+              'ensure' => 'present',
+            },
+          },
+          'ssh_key_groups' => {
+            'ssh1' => {
+              'ssh_users' => ['test1', 'test2'],
+            },
+          },
+        }
+      end
+
+      it { is_expected.to compile }
+
+      it do
+        if ENV['DEBUG']
+          pp catalogue.resources
+        end
+
+        is_expected.to contain_file('/home/test1/.ssh')
+          .with(
+            'ensure'  => 'directory',
+            'owner'   => 5001,
+            'group'   => 5001,
+            'mode'    => '0755',
+          )
+          .that_requires('User[test1]')
+
+        is_expected.to contain_file('/home/test2/.ssh')
+          .with(
+            'ensure'  => 'directory',
+            'owner'   => 5002,
+            'group'   => 5002,
+            'mode'    => '0755',
+          )
+          .that_requires('User[test2]')
+
+        is_expected.to contain_concat('/home/test1/.ssh/authorized_keys')
+          .with(
+            'ensure' => 'present',
+            'owner'  => '5001',
+            'group'  => '5001',
+            'mode'   => '0644',
+          )
+
+        is_expected.to contain_concat('/home/test2/.ssh/authorized_keys')
+          .with(
+            'ensure' => 'present',
+            'owner'  => '5002',
+            'group'  => '5002',
+            'mode'   => '0644',
+          )
+
+        is_expected.to contain_user('test1')
+          .with(
+            'ensure'     => 'present',
+            'gid'        => 5001,
+            'home'       => '/home/test1',
+            'managehome' => true,
+            'uid'        => 5001,
+          )
+
+        is_expected.to contain_user('test2')
+          .with(
+            'ensure'     => 'present',
+            'gid'        => 5002,
+            'home'       => '/home/test2',
+            'managehome' => true,
+            'uid'        => 5002,
+          )
+
+        is_expected.to contain_group('test1')
+          .with(
+            'ensure' => 'present',
+            'gid' => '5001',
+          )
+
+        is_expected.to contain_group('test2')
+          .with(
+            'ensure' => 'present',
+            'gid' => '5002',
+          )
+
+        is_expected.to contain_sshkeymgmt__create_user('test1')
+        is_expected.to contain_sshkeymgmt__create_user('test2')
+        is_expected.to contain_sshkeymgmt__add_users('ssh1')
+
+        is_expected.to contain_concat__fragment('5001-5001-auth')
+          .with(
+            'target' => '/home/test1/.ssh/authorized_keys',
+          )
+
+        is_expected.to contain_concat__fragment('5002-5002-auth')
+          .with(
+            'target' => '/home/test2/.ssh/authorized_keys',
+          )
+      end
+    end # end context
   end
 end

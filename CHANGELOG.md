@@ -1,5 +1,11 @@
 # Changelog
 
+## Release 1.1.0
+
+* Update to PDK version 2.7.1
+* bumped dependencies to most current versions
+* removed old and added new OS
+
 ## Release 1.0.0
 
 * Updated to pdk 2.4.0

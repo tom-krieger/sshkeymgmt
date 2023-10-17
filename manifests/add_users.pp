@@ -6,14 +6,14 @@
 # @param ssh_users
 #    List of users
 #
-define sshkeymgmt::add_users(
+define sshkeymgmt::add_users (
   Array $ssh_users
 ) {
   if(empty($ssh_users)) {
-    notify{"No ssh users in group ${title}": }
+    notify { "No ssh users in group ${title}": }
   }
 
-  if ($sshkeymgmt::authorized_keys_base_dir != '') {
+  if ($sshkeymgmt::authorized_keys_base_dir != '') and ($sshkeymgmt::authorized_keys_base_dir != undef) {
     $myowner = $sshkeymgmt::authorized_keys_owner
     $mygroup = $sshkeymgmt::authorized_keys_group
     $mymode  = $sshkeymgmt::authorized_keys_permissions
@@ -23,9 +23,9 @@ define sshkeymgmt::add_users(
     $user_data_hash = $sshkeymgmt::users.filter |$items| { $items[0] == $ssh_user }
 
     if(empty($user_data_hash)) {
-      notify{"No user data for ${ssh_user} found. Ignoring this user": }
+      notify { "No user data for ${ssh_user} found. Ignoring this user": }
     } else {
-      if ($sshkeymgmt::authorized_keys_base_dir == '') {
+      if ($sshkeymgmt::authorized_keys_base_dir == '') or ($sshkeymgmt::authorized_keys_base_dir == undef) {
         $myfile = "${user_data_hash[$ssh_user]['homedir']}/.ssh/authorized_keys"
         $myowner = $user_data_hash[$ssh_user]['uid']
         $mygroup = $user_data_hash[$ssh_user]['gid']
@@ -41,7 +41,7 @@ define sshkeymgmt::add_users(
           ensure_newline => true,
           owner          => $myowner,
           group          => $mygroup,
-          mode           => $mymode
+          mode           => $mymode,
         }
 
         create_resources('sshkeymgmt::create_user', $user_data_hash )
