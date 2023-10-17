@@ -33,33 +33,37 @@
 #
 # @example
 #   include sshkeymgmt
-class sshkeymgmt(
+class sshkeymgmt (
   Hash $users ,
   Hash $groups,
   Hash $ssh_key_groups,
-  String $authorized_keys_base_dir             = '',
-  String $authorized_keys_owner                = '',
-  String $authorized_keys_group                = '',
-  String $authorized_keys_permissions          = '',
-  String $authorized_keys_base_dir_permissions = '',
+  Optional[String] $authorized_keys_base_dir             = undef,
+  Optional[String] $authorized_keys_owner                = undef,
+  Optional[String] $authorized_keys_group                = undef,
+  Optional[String] $authorized_keys_permissions          = undef,
+  Optional[String] $authorized_keys_base_dir_permissions = undef,
 ) {
-
   if(empty($users) ) {
-    notify{'No users defined': }
+    notify { 'No users defined': }
   }
 
   if(empty($ssh_key_groups)) {
-    notify{'No ssh key groups defined': }
+    notify { 'No ssh key groups defined': }
   }
 
-  if ($authorized_keys_base_dir != '') {
-
-    if(empty($authorized_keys_owner) or empty($authorized_keys_group) or
-      empty($authorized_keys_permissions) or empty($authorized_keys_base_dir_permissions)) {
+  if ($authorized_keys_base_dir != '') and ($authorized_keys_base_dir != undef) {
+    if empty($authorized_keys_owner) or
+    empty($authorized_keys_group) or
+    empty($authorized_keys_permissions) or
+    empty($authorized_keys_base_dir_permissions) or
+    ($authorized_keys_owner == undef) or
+    ($authorized_keys_group == undef) or
+    ($authorized_keys_permissions == undef) or
+    ($authorized_keys_base_dir_permissions == undef) {
       fail('authorized_keys_owner, authorized_keys_group, authorized_keys_base_dir_permissions and authorized_keys_permissions must be set as well!') #lint:ignore:140chars
     }
 
-    file{$authorized_keys_base_dir:
+    file { $authorized_keys_base_dir:
       ensure => directory,
       owner  => $authorized_keys_owner,
       group  => $authorized_keys_group,
@@ -69,8 +73,8 @@ class sshkeymgmt(
 
   $groups.each | $group, $group_data | {
     ensure_resource('group', $group, {
-      ensure => $group_data['ensure'],
-      gid    => $group_data['gid'],
+        ensure => $group_data['ensure'],
+        gid    => $group_data['gid'],
     })
   }
 

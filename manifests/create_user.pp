@@ -33,41 +33,46 @@
 define sshkeymgmt::create_user (
   Integer $uid,
   Integer $gid,
-  String $homedir                   = '',
-  String $comment                   = '',
+  Optional[String] $homedir         = undef,
+  Optional[String] $comment         = undef,
   String $shell                     = '/bin/bash',
   String $password                  = '!!',               #lint:ignore:security_password_in_code
   Enum['present', 'absent'] $ensure = 'present',
   Array $groups                     = [],
-  Array $sshkeys                    = []) {
-
+  Array $sshkeys                    = [],
+) {
   $user = $title
 
-  if ($homedir == '') {
-    $myhome = "/home/${user}"
-  } else {
-    $myhome = $homedir
+  $myhome = $homedir ? {
+    undef   => "/home/${user}",
+    ''      => "/home/${user}",
+    default => $homedir,
   }
 
-  if ($sshkeymgmt::authorized_keys_base_dir == '') {
+  $_comment = $comment ? {
+    undef   => '',
+    default => $comment,
+  }
+
+  if ($sshkeymgmt::authorized_keys_base_dir == '') or ($sshkeymgmt::authorized_keys_base_dir == undef) {
     $mysshkeydir = "${myhome}/.ssh"
   } else {
     $mysshkeydir = $sshkeymgmt::authorized_keys_base_dir
   }
 
   ensure_resource('user', $user, {
-    ensure     => $ensure,
-    gid        => $gid,
-    comment    => $comment,
-    shell      => $shell,
-    home       => $myhome,
-    password   => $password,
-    managehome => true,
-    groups     => $groups,
-    uid        => $uid,
+      ensure     => $ensure,
+      gid        => $gid,
+      comment    => $_comment,
+      shell      => $shell,
+      home       => $myhome,
+      password   => $password,
+      managehome => true,
+      groups     => $groups,
+      uid        => $uid,
   })
 
-  if ($sshkeymgmt::authorized_keys_base_dir == '') {
+  if ($sshkeymgmt::authorized_keys_base_dir == '') or ($sshkeymgmt::authorized_keys_base_dir == undef) {
     file { $mysshkeydir:
       ensure  => directory,
       require => User[$user],
@@ -78,8 +83,7 @@ define sshkeymgmt::create_user (
   }
 
   if (empty($sshkeys) == false) {
-
-    if ($sshkeymgmt::authorized_keys_base_dir == '') {
+    if ($sshkeymgmt::authorized_keys_base_dir == '') or ($sshkeymgmt::authorized_keys_base_dir == undef) {
       $myfile = "${myhome}/.ssh/authorized_keys"
     } else {
       $myfile = "${sshkeymgmt::authorized_keys_base_dir}/${user}.authorized_keys"
@@ -87,7 +91,7 @@ define sshkeymgmt::create_user (
 
     concat::fragment { "${uid}-${gid}-auth":
       target  => $myfile,
-      content => epp('sshkeymgmt/authorized_keys.epp', {'sshkeys' => $sshkeys})
+      content => epp('sshkeymgmt/authorized_keys.epp', { 'sshkeys' => $sshkeys }),
     }
   }
 }

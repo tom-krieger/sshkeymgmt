@@ -2,8 +2,6 @@
 Gemfile:
   required:
     ':development':
-      - gem: 'puppet_litmus'
-      - gem: 'serverspec'
       - gem: 'hiera-puppet-helper'
       - gem: 'net-ssh'
       - gem: 'ed25519'
@@ -12,6 +10,8 @@ Gemfile:
         version: '>= 1.0'
       - gem: 'puppet-lint-security-plugins'
       - gem: 'puppet-strings'
+    ':system_tests':
+      - gem: 'hiera-puppet-helper'
 
 spec/spec_helper.rb:
   mock_with: ':rspec'
